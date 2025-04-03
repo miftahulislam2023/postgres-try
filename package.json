@@ -11,9 +11,11 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prisma": "^6.5.0"
   }
 }
