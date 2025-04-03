@@ -5,14 +5,15 @@ const prisma = new PrismaClient();
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(express.json());
 
 app.get('{/*path}', async (req, res) => {
-    const email = `${req.path}@gmail.com`
+    const newPath = req.path.slice(1)
+    const email = `${newPath}@gmail.com`
+    const name = newPath
     const result = await prisma.user.create({
         data: {
-            name: req.path,
+            name: name,
             email: email
         }
     });
@@ -24,11 +25,21 @@ app.get('{/*path}', async (req, res) => {
     });
 });
 
-app.post('{/*path}', (req, res) => {
+app.post('{/*path}', async (req, res) => {
+    const newPath = req.path.slice(1)
+    const email = `${newPath}@gmail.com`
+    const name = newPath
+    const result = await prisma.user.create({
+        data: {
+            name: name,
+            email: email
+        }
+    });
     res.json({
         message: `Assalamu 'alaykum from POST`,
+        result: result,
         path: req.path,
-        body: req.body
+        query: req.params
     });
 });
 
