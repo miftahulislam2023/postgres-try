@@ -15,7 +15,14 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String // Add this (will store hashed passwords)
+  role     Role?   @default(USER) // For RBAC (e.g., "USER", "ADMIN")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
